@@ -142,7 +142,7 @@ Primero de todo utilizamos la practica 1 para obtener dos ficheros que contengan
 
 Una vez hecho esto, accedemos a Wavesurfer y abrimos el fichero de audio de la señal a analizar. En la WaveForm, clicamos botón derecho con el ratón > create panel > transcription. A continuación, buscamos donde creemos que empieza la voz y clicamos botón derecho > insert label → Acabamos de determinar donde empieza la voz, así que el intervalo anterior era de silencio: Lo etiquetamos con una s. Continuamos así hasta llegar al final, etiquetando el silecio con 's' y la voz con 'v'. Durante el proceso, cabe destacar que se ha tenido en cuenta que, si se trata de un segmento muy corto de silencio, es mejor no marcarlo con la s (podría causar problemas al posterior análisis de los segmentos). Para ello, seleccionando con el ratón nos dice cuanto dura. Hemos considerado 50ms como el umbral entre silencio o natural del habla.
 
-A continuación clicamos botón derecho y seleccionamos **Create Panel → Data Plot**. Se nos crea un panel en blanco donde volvemos a hacer click derecho y esta vez seleccionamos **Open Data File** y abrimos el fichero donde se han guardado los datos de la potencia: `pav_2341_pot.pot`. A continuación hacemos lo mismo para visualizar la tasa de cruces por cero con el fichero: `pav_2341_zcr.pot`
+Después clicamos botón derecho y seleccionamos **Create Panel → Data Plot**. Se nos crea un panel en blanco. Volvemos a hacer click derecho y esta vez seleccionamos **Open Data File** y abrimos el fichero donde se han guardado los datos de la potencia: `pav_2341_pot.pot`. A continuación hacemos lo mismo para visualizar la tasa de cruces por cero con el fichero: `pav_2341_zcr.pot`.
 
 El resultado ha sido el siguiente:
 
