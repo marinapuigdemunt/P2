@@ -136,10 +136,16 @@ Ejercicios
   continuación, una captura de `wavesurfer` en la que se vea con claridad la señal temporal, el contorno de
   potencia y la tasa de cruces por cero, junto con el etiquetado manual de los segmentos.
 
-Primero de todo
-Primero accedemos a Wavesurfer y abrimos el fichero de audio de la señal a analizar. En la WaveForm, clicamos botón derecho con el ratón > create panel > transcription. A continuación, buscamos donde creemos que empieza la voz y clicamos botón derecho > insert label → Acabamos de determinar donde empieza la voz, así que el intervalo anterior era de silencio: Lo etiquetamos con una s. Continuamos así hasta llegar al final, etiquetando el silecio con 's' y la voz con 'v'. Durante el proceso, cabe destacar que se ha tenido en cuenta que, si se trata de un segmento muy corto de silencio, es mejor no marcarlo con la s (podría causar problemas al posterior análisis de los segmentos). Para ello, seleccionando con el ratón nos dice cuanto dura. Hemos considerado 50ms   como el umbral entre silencio o natural del habla.
+Primero de todo utilizamos la practica 1 para obtener dos ficheros que contengan la información de la potencia de la señal y la tasa de cruces por cero. Para ello se han utilizado los siguientes comandos:
+- Potencia:  `./p1 pav_2341.wav | cut -f 2 > pav_2341_pot.pot`
+- ZCR: `./p1 pav_2341.wav | cut -f 4 > pav_2341_zcr.pot`
+
+Una vez hecho esto, accedemos a Wavesurfer y abrimos el fichero de audio de la señal a analizar. En la WaveForm, clicamos botón derecho con el ratón > create panel > transcription. A continuación, buscamos donde creemos que empieza la voz y clicamos botón derecho > insert label → Acabamos de determinar donde empieza la voz, así que el intervalo anterior era de silencio: Lo etiquetamos con una s. Continuamos así hasta llegar al final, etiquetando el silecio con 's' y la voz con 'v'. Durante el proceso, cabe destacar que se ha tenido en cuenta que, si se trata de un segmento muy corto de silencio, es mejor no marcarlo con la s (podría causar problemas al posterior análisis de los segmentos). Para ello, seleccionando con el ratón nos dice cuanto dura. Hemos considerado 50ms como el umbral entre silencio o natural del habla.
+
+A continuación clicamos botón derecho y seleccionamos **Create Panel → Data Plot**. Se nos crea un panel en blanco donde volvemos a hacer click derecho y esta vez seleccionamos **Open Data File** y abrimos el fichero donde se han guardado los datos de la potencia: `pav_2341_pot.pot`. A continuación hacemos lo mismo para visualizar la tasa de cruces por cero con el fichero: `pav_2341_zcr.pot`
 
 El resultado ha sido el siguiente:
+
 <img width="1440" alt="image" src="https://github.com/marinapuigdemunt/P2/blob/dc0a4712ddf65aca2e2f51ed4948ba394f30e38c/wavesurfer_waveform_power_zcr.png">
 
 Una vez finalizado el etiquetado, haciendo un cat del fichero en el terminal podemos ver su contenido:
