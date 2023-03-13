@@ -151,9 +151,17 @@ El resultado ha sido el siguiente:
 
 La primera gráfica pertenece al waveform de la señal, la segunda a la potencia y la tercera a la ZCR.
 
-
 Una vez finalizado el etiquetado, haciendo un cat del fichero en el terminal podemos ver su contenido:
-
+`judith@LAPTOP-RSBTF2ED:~/PAV/P2/senyals$ cat pav_2341.lab
+0.0000000 0.5326841 S
+0.5326841 0.8848719 V
+0.8848719 0.9399013 S
+0.9399013 1.2304562 V
+1.2304562 1.2964915 S
+1.2964915 1.6222652 V
+1.6222652 1.9282284 S
+1.9282284 3.8652615 V
+3.8652615 4.0567500 S`
 
 - A la vista de la gráfica, indique qué valores considera adecuados para las magnitudes siguientes:
 
