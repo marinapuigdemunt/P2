@@ -8,16 +8,3 @@ float compute_zcr(const float *x, unsigned int N, float fm);
 
 
 #endif  /* PAV_ANALYSIS_H   */
-
-
-
-
-
-
-
-
-
-
-
-
-
