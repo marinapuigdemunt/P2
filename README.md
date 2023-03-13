@@ -149,6 +149,9 @@ El resultado ha sido el siguiente:
 
 <img width="1440" alt="image" src="https://github.com/marinapuigdemunt/P2/blob/dc0a4712ddf65aca2e2f51ed4948ba394f30e38c/wavesurfer_waveform_power_zcr.png">
 
+La primera gráfica pertenece al waveform de la señal, la segunda a la potencia y la tercera a la ZCR.
+
+
 Una vez finalizado el etiquetado, haciendo un cat del fichero en el terminal podemos ver su contenido:
 
 
