@@ -174,7 +174,7 @@ El punto con más potencia encontrado en un segmento de voz es de -17,92 dB:
 
 <img width="1439" alt="Captura de pantalla 2023-03-18 a les 12 35 18" src="https://user-images.githubusercontent.com/125259984/226103140-3c75cf22-1611-4e6e-9fb3-04b7d6819f99.png">
 
-El punto con menos potencia encontrado en un segmento de voz es de -59,84 dB, y se encuentra en el abismo de un segmento de voz, justo antes de pasar a considerarse silencio:
+El punto con menos potencia encontrado en un segmento de voz es de -59,84 dB, y se encuentra en el abismo de un segmento de voz, justo antes de pasar a considerarse silencio (mirar línea roja):
 
 <img width="1259" alt="image" src="https://user-images.githubusercontent.com/125259984/226103737-b9051c4f-d185-47a7-afa0-681f3b634d27.png">
 
@@ -210,7 +210,7 @@ Por otra parte, el primer segmento de voz empieza en -26,75 dB:
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/125259984/226105895-c44562d7-2150-4777-9873-bc10ae5c62d3.png">
 
-Concluimos, entonces, que un incremento razonable de potencia respecto del silencio inicial para determinar que suena voz, sería de -26,75 - (-142,04) = 115,29 dB.
+Concluimos, entonces, que un incremento razonable de potencia respecto del silencio inicial para determinar que suena voz, sería de -26,75 - (-142,04) = **115,29 dB**.
 
 	* Duración mínima razonable de los segmentos de voz y silencio.
 	
@@ -226,15 +226,16 @@ La tasa de cruces por cero es una medida útil para distinguir segmentos de voz 
 
 En los segmentos de voz, la tasa de cruces por cero o ZCR suele ser alta debido a las vibraciones vocales que generan cambios rápidos de polaridad. En cambio, en los segmentos de silencio, la ZCR es baja porque la señal es plana y no hay cambios de polaridad significativos.
 
-Analizando la tasa de cruces por cero de nuestra señal de audio, por lo tanto, se pueden identificar los segmentos de voz como aquellos que presentan una tasa alta y los segmentos de silencio como aquellos que presentan una tasa baja:
+Además, sabemos que como los sonidos sordos se producen sin vibraciones en las cuerdas vocales no producen ondas sonoras continuas, por lo tanto, pasan muchas más veces por cero que los sonidos sonoros, los cuales si que generan ondas sonoras continuas. Por lo tanto, las partes que la ZCR sea más elevada se tratará de sonidos sordos.
+
+Analizando la tasa de cruces por cero de nuestra señal de audio, se identifican los segmentos de voz como aquellos que presentan una tasa alta y los segmentos de silencio como aquellos que presentan una tasa bastante baja:
 
 <img width="1437" alt="image" src="https://user-images.githubusercontent.com/125259984/226108281-23f466e2-6651-44b4-bf6f-a665ce6371c6.png">
 
-Como se puede ver, la ZCR tiene picos en los segmentos de voz, y al inicio de la grabación la ZCR es mayoritariamente cero hasta que se empieza a hablar:
+Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los segmentos de voz vemos que en las partes donde la ZCR es bastante más elevada corresponde a sonidos sordos, tal y como vemos a los 2 segundos donde aparece un pico bastante notable y si escuchamos el audio en ese instante nos damos cuenta que en ese momento se pronuncia la letra 's' que es un sonido sordo. También vemos que al inicio de la grabación la ZCR es mayoritariamente cero hasta que se empieza a hablar:
 
 <img width="1429" alt="image" src="https://user-images.githubusercontent.com/125259984/226108330-8a408a1a-7641-4cd8-afe4-5ee37f178a72.png">
 
-Cabe destacar, sin embargo, que esta medida claramente no es perfecta, y en las imágenes mostradas la ZCR no da información tan clara como esperaríamos, además de que tiene un extraño pico en un segmento que, pese a ser de voz, no es de demasiada potencia vocal. Esto es debido a que la tasa de cruces por cero no es una medida infalible para detectar la presencia de voz o silencio en una señal de audio, ya que puede haber otros factores que afecten esta medida, como la presencia de ruido o de otros sonidos no vocales. 
 
 ### Desarrollo del detector de actividad vocal
 
