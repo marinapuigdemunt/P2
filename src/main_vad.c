@@ -6,7 +6,7 @@
 
 #include "vad.h"
 #include "vad_docopt.h"
-
+#include <ctype.h>
 #define DEBUG_VAD 0x1
 
 int main(int argc, char *argv[]) {
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  vad_data = vad_open(sf_info.samplerate, alfa0);
+  vad_data = vad_open(sf_info.samplerate,alfa0);
   /* Allocate memory for buffers */
   frame_size   = vad_frame_size(vad_data);
   buffer       = (float *) malloc(frame_size * sizeof(float));
