@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <sndfile.h>
+#include <ctype.h>
 
 #include "vad.h"
 #include "vad_docopt.h"
