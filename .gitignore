@@ -9,4 +9,4 @@ __MAC*
 !/scripts/
 !/src/
 !/img/
-!/db.v4/
+#!/db.v4/ así nos evitamos que se nos bajen los ficheros de la base de datos

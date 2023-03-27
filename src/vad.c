@@ -109,7 +109,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
     if (f.p < vad_data->p0 + vad_data->alfa0)
       vad_data->state = ST_SILENCE;
     break;
-
+//añadir ST_MV y ST_MS
   case ST_UNDEF:
     break;
   }
