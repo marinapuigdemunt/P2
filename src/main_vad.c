@@ -98,6 +98,15 @@ int main(int argc, char *argv[]) {
 
     if (sndfile_out != 0) {
       /* TODO: go back and write zeros in silence segments */
+      if(last_state==ST_SILENCE){  //si estamos en un silence segment
+        sf_write_float(sndfile_out,buffer_zeros,frame_size);  //escribimos ceros (buffer_zeros) durante la duración de la frame (frame_size) en el output de soundfile (sndfile_out)
+      }
+      /*
+      else{
+        sf_write_float(sndfile_out,buffer,frame_size);  //si estamos en cualquier otro estado escribimos el buffer en cuestión
+      }
+      */
+      last_state = state;
     }
   }
 
