@@ -1,9 +1,14 @@
 #!/bin/bash
 
+#if [ $# != 1 ]; then 
+#    echo "Usage: $0 alfa0" #dolar 0 es para que nos salga el nombre del programa
+#    exit 1
+#fi
 if [ $# != 1 ]; then 
-    echo "Usage: $0 alfa0" #dolar 0 es para que nos salga el nombre del programa
+    echo "Usage: $0 alfa1" #dolar 0 es para que nos salga el nombre del programa
     exit 1
 fi
+
 # Be sure that this file has execution permissions:
 # Use the nautilus explorer or chmod +x run_vad.sh
 

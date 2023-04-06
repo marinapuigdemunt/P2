@@ -106,7 +106,7 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
     vad_data->p0=f.p;
 
     vad_data->max_sil = vad_data->p0 + vad_data->alfa0-0.5; 
-    vad_data->min_voz = vad_data->p0 + vad_data->alfa1 +7;  
+    vad_data->min_voz = vad_data->p0 + vad_data->alfa1+7;  
 
     break;
 

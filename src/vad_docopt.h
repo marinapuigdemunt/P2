@@ -17,6 +17,7 @@ typedef struct {
     int version;
     /* options with arguments */
     char *alfa0;
+    char *alfa1;
     char *input_wav;
     char *output_vad;
     char *output_wav;
@@ -38,6 +39,7 @@ const char help_message[] =
 "   -o FILE, --output-vad=FILE  Label file with the result of VAD\n"
 "   -w FILE, --output-wav=FILE  WAVE file with silences cleared\n"
 "   -0 FLOAT, --alfa0=FLOAT  Guany per determinar el llindar 0 [default: 10]\n"
+"   -1 FLOAT, --alfa1=FLOAT  Guany per determinar el llindar 1 [default: 10]\n"
 "   -v, --verbose  Show debug information\n"
 "   -h, --help     Show this screen\n"
 "   --version      Show the version of the project\n"
@@ -275,6 +277,9 @@ int elems_to_args(Elements *elements, DocoptArgs *args, bool help,
         } else if (!strcmp(option->olong, "--alfa0")) {
             if (option->argument)
                 args->alfa0 = option->argument;
+        } else if (!strcmp(option->olong, "--alfa1")) {
+            if (option->argument)
+                args->alfa1 = option->argument;
         } else if (!strcmp(option->olong, "--input-wav")) {
             if (option->argument)
                 args->input_wav = option->argument;
@@ -317,6 +322,7 @@ DocoptArgs docopt(int argc, char *argv[], bool help, const char *version) {
         {"-v", "--verbose", 0, 0, NULL},
         {NULL, "--version", 0, 0, NULL},
         {"-0", "--alfa0", 1, 0, NULL},
+        {"-1", "--alfa1", 1, 0, NULL},
         {"-i", "--input-wav", 1, 0, NULL},
         {"-o", "--output-vad", 1, 0, NULL},
         {"-w", "--output-wav", 1, 0, NULL}
