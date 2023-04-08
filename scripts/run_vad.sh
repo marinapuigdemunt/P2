@@ -1,11 +1,7 @@
 #!/bin/bash
 
-#if [ $# != 1 ]; then 
-#    echo "Usage: $0 alfa0" #dolar 0 es para que nos salga el nombre del programa
-#    exit 1
-#fi
 if [ $# != 1 ]; then 
-    echo "Usage: $0 alfa1" #dolar 0 es para que nos salga el nombre del programa
+    echo "Usage: $0 alfa0 alfa1" #dolar 0 es para que nos salga el nombre del programa
     exit 1
 fi
 
@@ -15,7 +11,7 @@ fi
 # Write here the name and path of your program and database
 DIR_P2=$HOME/PAV/P2
 DB=$DIR_P2/db.v4
-CMD="$DIR_P2/bin/vad -0 $1" 
+CMD="$DIR_P2/bin/vad -0 $1 -1 $2" 
 
 for filewav in $DB/*/*wav; do
 #    echo
