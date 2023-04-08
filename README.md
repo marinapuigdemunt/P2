@@ -272,13 +272,13 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
-- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 
-  parámetros alternativos, etc.).
+- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o parámetros alternativos, etc.).
   
-  Hemos añadido un segundo umbral, alfa 1. Esto lo hemos hecho para separar los umbrales de voz y de silencio, de manera que el mínimo de voz no es directamente el máximo de silencio, y viceversa. Hemos considerado conveniente esta adición puesto que así obteníamos mejores resultados. El funcionamiento de ambos umbrales es el siguiente: Para pasar de  VOICE a MAYBE SILENCE, o de SILENCE a MAYBE VOICE, se requiere que la señal de audio en ese momento entre estrictamente en el rango de silencio o de voz respectivamente, de manera que si estamos en VOICE, por ejemplo, para pasar a MAYBE SILENCE se debe estar POR DEBAJO del máximo de silencio, pero si estamos en VOICE y en algún momento pasamos al intervalo que está por debajo del rango de voz, pero por encima del máximo de ruido, seguimos en voz (no se requiere estar en el rango estricto definido de voz o de silencio, simplemente no entrar en el rango estricto opuesto). De manera más visual, la máquina de estados seguida ha sido la siguiente:
+ Hemos añadido un segundo umbral, alfa 1. Esto lo hemos hecho para separar los umbrales de voz y de silencio, de manera que el mínimo de voz no es directamente el máximo de silencio, y viceversa. Hemos considerado conveniente esta adición puesto que así obteníamos mejores resultados. El funcionamiento de ambos umbrales es el siguiente: Para pasar de  `VOICE` a `MAYBE SILENCE`, o de `SILENCE` a `MAYBE VOICE`, se requiere que la señal de audio en ese momento entre estrictamente en el rango de silencio o de voz respectivamente, de manera que si estamos en `VOICE`, por ejemplo, para pasar a `MAYBE SILENCE` se debe estar POR DEBAJO del máximo de silencio, pero si estamos en `VOICE` y en algún momento pasamos al intervalo que está por debajo del rango de voz, pero por encima del máximo de ruido, seguimos en voz (no se requiere estar en el rango estricto definido de voz o de silencio, simplemente no entrar en el rango estricto opuesto). De manera más visual, la máquina de estados seguida ha sido la siguiente:
   
   AQUI pondre foto del good notes
   
+  ## Máquina de Estados
 
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
