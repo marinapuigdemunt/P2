@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# != 1 ]; then 
+if [ $# != 2 ]; then 
     echo "Usage: $0 alfa0 alfa1" #dolar 0 es para que nos salga el nombre del programa
     exit 1
 fi
