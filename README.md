@@ -267,7 +267,8 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
-
+  
+<img width="804" alt="image" src="https://user-images.githubusercontent.com/125259984/230736245-4d397ee3-ac55-4f1b-9b52-db7e6a3cd1bc.png">
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
