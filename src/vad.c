@@ -6,6 +6,7 @@
 #include "pav_analysis.h"
 
 const float FRAME_TIME = 10.0F; /* in ms. */
+const int MAX_TRAMAS = 3;
 
 /* 
  * As the output state is only ST_VOICE, ST_SILENCE, or ST_UNDEF,
@@ -14,7 +15,7 @@ const float FRAME_TIME = 10.0F; /* in ms. */
  */
 
 const char *state_str[] = {
-  "UNDEF", "S", "V", "INIT"
+  "UNDEF", "S", "V", "INIT", "MV", "MS"
 };
 
 const char *state2str(VAD_STATE st) {
@@ -44,9 +45,10 @@ Features compute_features(const float *x, int N) {
    */
   Features feat;
   //feat.zcr = feat.p = feat.am = (float) rand()/RAND_MAX;
-  feat.p=compute_power(x,N);
+  feat.p = compute_power(x,N);
+  feat.zcr = compute_zcr(x,N,16000);
+  feat.am = compute_am(x,N);
   return feat;
-
 
 }
 
@@ -61,10 +63,13 @@ VAD_DATA * vad_open(float rate,float alfa0, float alfa1) {
   vad_data->frame_length = rate * FRAME_TIME * 1e-3;
   vad_data->alfa0 = alfa0;
   vad_data->alfa1 = alfa1;
+  vad_data->N_tramas = MAX_TRAMAS;
+  /*
   vad_data->MAX_MAYBES_SIL = 5;
   vad_data->MAX_MAYBES_VOZ = 3;//PREFERIMOS ELIMINAR SILENCIO QUE VOZ: por lo que definimos una ventana maybe más pequeña
   vad_data->num_maybes_voz = 0;
   vad_data->num_maybes_sil = 0;
+  */
   return vad_data;
 }
 
@@ -103,15 +108,20 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
   
   case ST_INIT: //estado inicial
     vad_data->state = ST_SILENCE;
-    vad_data->p0=f.p;
-
+    vad_data->p0 = f.p + vad_data->alfa0;
+    vad_data->p1 = f.p + vad_data->alfa1;
+   /*
     vad_data->max_sil = vad_data->p0 + vad_data->alfa0-0.5; 
-    vad_data->min_voz = vad_data->p0 + vad_data->alfa1+7;  
-
+    vad_data->min_voz = vad_data->p0 + vad_data->alfa1+0;  
+   */
     break;
 
   case ST_SILENCE:
-
+    if(f.p > vad_data->p0){ //si nuestra potencia está por encima de la mínima para voz:
+        vad_data->state = ST_MV; //pasamos a considerar MAYBE voice
+        vad_data->N_tramas --;
+     }
+    /*
      if(f.p > vad_data->min_voz){ //si nuestra potencia está por encima de la mínima para voz:
         vad_data->state = ST_MV; //pasamos a considerar MAYBE voice
         
@@ -119,30 +129,27 @@ VAD_STATE vad(VAD_DATA *vad_data, float *x) {
       vad_data->num_maybes_voz=0;
       vad_data->state = ST_SILENCE;
     }
-
+    */
     break;
 
   case ST_VOICE:
 
-    /*
-    if (f.p < vad_data->p0 + vad_data->alfa0)
-      vad_data->state = ST_SILENCE;
-    */
-
+    if (f.p < vad_data->p1){
+      vad_data->state = ST_MS;
+      vad_data->N_tramas --;
+    }
+      /*
       if(f.p < vad_data->max_sil){ //si nuestra potencia está por debajo de la máxima para silencio:
         vad_data->state = ST_MS; //pasamos a considerar MAYBE silence
-     }else{
+      }else{
       vad_data->num_maybes_sil=0;
       vad_data->state = ST_VOICE;
-    }
-
+      }
+      */
     break;
 
-
-//añadir ST_MV y ST_MS
-
 case ST_MV:
-
+    /*
     vad_data->num_maybes_voz++;
 
     //miramos si dura lo suficiente como para pasar a segmento de voz
@@ -156,11 +163,22 @@ case ST_MV:
      else if(f.p<vad_data->max_sil){
       vad_data->state = ST_SILENCE; 
     }
-    
+    */
+    if(f.p > vad_data->p1){
+      vad_data->N_tramas = MAX_TRAMAS;
+      vad_data->state = ST_VOICE;
+    }
+    else if ((f.p < vad_data->p0) || (vad_data->N_tramas == 0)){
+      vad_data->N_tramas = MAX_TRAMAS;
+      vad_data->state = ST_SILENCE; 
+    }
+    else{
+      vad_data->N_tramas --;
+    }
     break;
   
   case ST_MS:
-
+  /*
    vad_data->num_maybes_sil++;
 
    //miramos si dura lo suficiente como pasar a segmento de silencio
@@ -176,13 +194,30 @@ case ST_MV:
       vad_data->num_maybes_sil=0;
       vad_data->state = ST_VOICE;
     }
+    */
+   if(f.p < vad_data->p0){
+      vad_data->N_tramas = MAX_TRAMAS;
+      vad_data->state = ST_SILENCE;
+    }
+    else if ((f.p > vad_data->p1) || (vad_data->N_tramas == 0)){
+      vad_data->N_tramas = MAX_TRAMAS;
+      vad_data->state = ST_VOICE; 
+    }
+    else{
+      vad_data->N_tramas --;
+    }
     break;
+
   case ST_UNDEF:
     break;
   }
 
-  if (vad_data->state == ST_SILENCE || vad_data->state == ST_VOICE || vad_data->state == ST_MV || vad_data->state == ST_MS)
-    return vad_data->state;
+  if (vad_data->state == ST_SILENCE || vad_data->state == ST_MV){
+    return ST_SILENCE;
+  }
+  else if (vad_data->state == ST_VOICE || vad_data->state == ST_MS){
+    return ST_VOICE;
+  }
   else
     return ST_UNDEF;
 }

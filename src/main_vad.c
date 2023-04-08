@@ -16,9 +16,10 @@ int main(int argc, char *argv[]) {
   SF_INFO sf_info;
   FILE *vadfile;
   int n_read = 0, i;
-
+  
   VAD_DATA *vad_data;
-  VAD_STATE state, last_state, last_defined_t, last_defined_state;
+  VAD_STATE state, last_state;
+  /*VAD_STATE state, last_state, last_defined_t, last_defined_state;*/
 
   float *buffer, *buffer_zeros;
   int frame_size;         /* in samples */
@@ -102,20 +103,21 @@ int main(int argc, char *argv[]) {
       if(last_state==ST_SILENCE){  //si estamos en un silence segment
         sf_write_float(sndfile_out,buffer_zeros,frame_size);  //escribimos ceros (buffer_zeros) durante la duración de la frame (frame_size) en el output de soundfile (sndfile_out)
       }
-      /*
+      
       else{
         sf_write_float(sndfile_out,buffer,frame_size);  //si estamos en cualquier otro estado escribimos el buffer en cuestión
       }
-      */
+      
       last_state = state;
     }
   }
 
   state = vad_close(vad_data);
   /* TODO: what do you want to print, for last frames? */
-  if (t != last_t)
+  if (t != last_t){
+    if (state == ST_MS || state == ST_MV) state = last_state;
     fprintf(vadfile, "%.5f\t%.5f\t%s\n", last_t * frame_duration, t * frame_duration + n_read / (float) sf_info.samplerate, state2str(state));
-
+  }
   /* clean up: free memory, close open files */
   free(buffer);
   free(buffer_zeros);

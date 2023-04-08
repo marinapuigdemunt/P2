@@ -20,6 +20,9 @@ typedef struct {
   float p1;
   float alfa0;
   float alfa1;
+  float counter;
+  float N_tramas;
+  /*
   int MAX_MAYBES_SIL;
   int MAX_MAYBES_VOZ;
   int num_maybes_voz;
@@ -27,7 +30,7 @@ typedef struct {
 
   float max_sil;
   float min_voz;
-
+  */
 } VAD_DATA;
 
 /* Call this function before using VAD: 
