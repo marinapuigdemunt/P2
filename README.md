@@ -247,6 +247,11 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
   
+  Como el audio utilizado en los apartados anteriores estaba "demasiado" bien grabado y como las primeras tramas tienen todas las muestras iguales a cero el nivel de ruido es menos infinito en dB (o algún valor extremadamente pequeño). Por ello, se ha ensuciado ligeramente la señal para que el resutado se vea mejor:
+  
+  ![image](https://user-images.githubusercontent.com/125259801/230765327-24b4bbaf-79db-40a3-a79e-41b74d427b40.png)
+
+  ![image](https://user-images.githubusercontent.com/125259801/230765354-07ee26cc-66bd-4945-8929-4b13e8efb20e.png)
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
