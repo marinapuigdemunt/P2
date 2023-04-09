@@ -255,6 +255,29 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
+Etiquetado manual:
+```bash
+judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.lab
+0.0000000 0.5263109 S
+0.5263109 0.8945119 V
+0.8945119 0.9378297 S
+0.9378297 1.2302247 V
+1.2302247 1.2995331 S
+1.2995331 1.6179187 V
+1.6179187 1.9319725 S
+1.9319725 3.8596133 V
+3.8596133 4.0393750 S
+```
+
+Detección automática:
+```bash
+judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.vad
+0.00000 0.11000 S
+0.11000 0.13000 V
+0.13000 0.53000 S
+0.53000 4.05887 V
+```
+
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
