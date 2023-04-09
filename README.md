@@ -278,6 +278,8 @@ judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.vad
 0.53000 4.05887 V
 ```
 
+En la detección automática observamos que se prioriza mucho la voz, ya que la detecta toda, pero en consecuencia detecta como voz partes que son silencio. En cambio, en el etiquetado manual la señal está mucho más fragmentada en trozos de voz y de silencio.
+
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
   el resumen).
