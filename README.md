@@ -275,6 +275,8 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
   
 <img width="804" alt="image" src="https://user-images.githubusercontent.com/125259984/230736245-4d397ee3-ac55-4f1b-9b52-db7e6a3cd1bc.png">
 
+![image](https://user-images.githubusercontent.com/125259801/230765612-5ddb6e8f-deae-4616-8445-9bbf3043a1b9.png)
+
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
 - Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o parámetros alternativos, etc.).
