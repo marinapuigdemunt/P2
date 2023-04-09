@@ -241,11 +241,44 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 
 - Complete el código de los ficheros de la práctica para implementar un detector de actividad vocal en
   tiempo real tan exacto como sea posible. Tome como objetivo la maximización de la puntuación-F `TOTAL`.
+  
+  El código se encuentra en las carpetas src y scripts de este mismo respositorio.
 
 - Inserte una gráfica en la que se vea con claridad la señal temporal, el etiquetado manual y la detección
   automática conseguida para el fichero grabado al efecto. 
+  
+  Como el audio utilizado en los apartados anteriores estaba "demasiado" bien grabado y como las primeras tramas tienen todas las muestras iguales a cero el nivel de ruido es menos infinito en dB (o algún valor extremadamente pequeño). Por ello, se ha ensuciado ligeramente la señal para que el resutado se vea mejor:
+  
+  ![image](https://user-images.githubusercontent.com/125259801/230765327-24b4bbaf-79db-40a3-a79e-41b74d427b40.png)
+
+  ![image](https://user-images.githubusercontent.com/125259801/230765354-07ee26cc-66bd-4945-8929-4b13e8efb20e.png)
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
+
+Etiquetado manual:
+```bash
+judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.lab
+0.0000000 0.5263109 S
+0.5263109 0.8945119 V
+0.8945119 0.9378297 S
+0.9378297 1.2302247 V
+1.2302247 1.2995331 S
+1.2995331 1.6179187 V
+1.6179187 1.9319725 S
+1.9319725 3.8596133 V
+3.8596133 4.0393750 S
+```
+
+Detección automática:
+```bash
+judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.vad
+0.00000 0.11000 S
+0.11000 0.13000 V
+0.13000 0.53000 S
+0.53000 4.05887 V
+```
+
+En la detección automática observamos que se prioriza mucho la voz, ya que la detecta toda, pero en consecuencia detecta como voz partes que son silencio. En cambio, en el etiquetado manual la señal está mucho más fragmentada en trozos de voz y de silencio.
 
 - Evalúe los resultados sobre la base de datos `db.v4` con el script `vad_evaluation.pl` e inserte a 
   continuación las tasas de sensibilidad (*recall*) y precisión para el conjunto de la base de datos (sólo
@@ -264,12 +297,20 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
 
 - Si ha usado `docopt_c` para realizar la gestión de las opciones y argumentos del programa `vad`, inserte
   una captura de pantalla en la que se vea el mensaje de ayuda del programa.
+  
+<img width="804" alt="image" src="https://user-images.githubusercontent.com/125259984/230736245-4d397ee3-ac55-4f1b-9b52-db7e6a3cd1bc.png">
 
+![image](https://user-images.githubusercontent.com/125259801/230765612-5ddb6e8f-deae-4616-8445-9bbf3043a1b9.png)
 
 ### Contribuciones adicionales y/o comentarios acerca de la práctica
 
-- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o 
-  parámetros alternativos, etc.).
+- Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o parámetros alternativos, etc.).
+  
+ Hemos añadido un segundo umbral, alfa 1. Esto lo hemos hecho para separar los umbrales de voz y de silencio, de manera que el mínimo de voz no es directamente el máximo de silencio, y viceversa. Hemos considerado conveniente esta adición puesto que así obteníamos mejores resultados. El funcionamiento de ambos umbrales es el siguiente: Para pasar de  `VOICE` a `MAYBE SILENCE`, o de `SILENCE` a `MAYBE VOICE`, se requiere que la señal de audio en ese momento entre estrictamente en el rango de silencio o de voz respectivamente, de manera que si estamos en `VOICE`, por ejemplo, para pasar a `MAYBE SILENCE` se debe estar *por debajo* del máximo de silencio, pero si estamos en `VOICE` y en algún momento pasamos al intervalo que está por debajo del rango de voz, pero por encima del máximo de ruido, seguimos en voz (no se requiere estar en el rango estricto definido de voz o de silencio, simplemente no entrar en el rango estricto opuesto). De manera más visual, la máquina de estados seguida ha sido la siguiente:
+  
+  AQUI pondre foto del good notes
+  
+  ## Máquina de Estados
 
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
