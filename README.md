@@ -252,6 +252,9 @@ Como se puede ver, la ZCR es más elevada en los segmentos de voz. Dentro de los
   ![image](https://user-images.githubusercontent.com/125259801/230765327-24b4bbaf-79db-40a3-a79e-41b74d427b40.png)
 
   ![image](https://user-images.githubusercontent.com/125259801/230765354-07ee26cc-66bd-4945-8929-4b13e8efb20e.png)
+  
+  <img width="918" alt="image" src="https://user-images.githubusercontent.com/125259984/230982825-a7daac78-bfdf-4bcf-a408-daea5229148d.png">
+
 
 - Explique, si existen. las discrepancias entre el etiquetado manual y la detección automática.
 
@@ -277,6 +280,7 @@ judith@LAPTOP-RSBTF2ED:~/PAV/P2$ cat pav_2341_dither.vad
 0.13000 0.53000 S
 0.53000 4.05887 V
 ```
+<img width="623" alt="image" src="https://user-images.githubusercontent.com/125259984/230983225-8a05d362-0dc7-46d7-a128-237e6af228af.png">
 
 En la detección automática observamos que se prioriza mucho la voz, ya que la detecta toda, pero en consecuencia detecta como voz partes que son silencio. En cambio, en el etiquetado manual la señal está mucho más fragmentada en trozos de voz y de silencio.
 
@@ -287,6 +291,10 @@ En la detección automática observamos que se prioriza mucho la voz, ya que la 
 Utilizando el comando `scripts/run_vad.sh 1.08 10.37` obtenemos los siguientes resultados:
 
 ![image](https://user-images.githubusercontent.com/125259801/230866785-15952698-aed2-43f5-a29e-961827a5051c.png)
+
+<img width="916" alt="image" src="https://user-images.githubusercontent.com/125259984/230984902-78624c80-de22-4a08-a1dd-396868563c8a.png">
+
+Por último, nos gustaría destacar que hemos mostrado todos los resultados obtenidos en ambos sistemas operativos, Windows y macOS, porque en diversas ocasiones éstos eran distintos (debido a diferencias en la forma en que manejan los números floats). En los casos mostrados, sin embargo, se puede apreciar que los resultados han sido los mismos.
 
 ### Trabajos de ampliación
 
@@ -309,15 +317,24 @@ Utilizando el comando `scripts/run_vad.sh 1.08 10.37` obtenemos los siguientes r
 
 - Indique a continuación si ha realizado algún tipo de aportación suplementaria (algoritmos de detección o parámetros alternativos, etc.).
   
- Hemos añadido un segundo umbral, alfa 1. Esto lo hemos hecho para separar los umbrales de voz y de silencio, de manera que el mínimo de voz no es directamente el máximo de silencio, y viceversa. Hemos considerado conveniente esta adición puesto que así obteníamos mejores resultados. El funcionamiento de ambos umbrales es el siguiente: Para pasar de  `VOICE` a `MAYBE SILENCE`, o de `SILENCE` a `MAYBE VOICE`, se requiere que la señal de audio en ese momento entre estrictamente en el rango de silencio o de voz respectivamente, de manera que si estamos en `VOICE`, por ejemplo, para pasar a `MAYBE SILENCE` se debe estar *por debajo* del máximo de silencio, pero si estamos en `VOICE` y en algún momento pasamos al intervalo que está por debajo del rango de voz, pero por encima del máximo de ruido, seguimos en voz (no se requiere estar en el rango estricto definido de voz o de silencio, simplemente no entrar en el rango estricto opuesto). De manera más visual, la máquina de estados seguida ha sido la siguiente:
-  
-  AQUI pondre foto del good notes
-  
-  ## Máquina de Estados
+ Hemos añadido un segundo umbral, alfa 1. Esto lo hemos hecho para separar los umbrales de voz y de silencio, de manera que el mínimo de voz no es directamente el máximo de silencio, y viceversa. Hemos considerado conveniente esta adición puesto que así obteníamos mejores resultados. El funcionamiento de ambos umbrales es el siguiente: Para pasar de  `VOICE` a `MAYBE SILENCE`, o de `SILENCE` a `MAYBE VOICE`, se requiere que la señal de audio en ese momento entre estrictamente en el rango de silencio o de voz respectivamente, de manera que si estamos en `VOICE`, por ejemplo, para pasar a `MAYBE SILENCE` se debe estar *por debajo* del máximo de silencio, pero si estamos en `VOICE` y en algún momento pasamos al intervalo que está por debajo del rango de voz, pero por encima del máximo de ruido, seguimos en voz (no se requiere estar en el rango estricto definido de voz o de silencio, simplemente no entrar en el rango estricto opuesto). 
 
 - Si lo desea, puede realizar también algún comentario acerca de la realización de la práctica que
   considere de interés de cara a su evaluación.
+  
+  Creemos que esta práctica ha sido especialmente útil, ya que nos ha permitido aprender mucho sobre github y todas sus posibilidades.
+  
+  Nos gustaría destacar el uso del comando `git log` para ver el historial de las diversas versiones del proyecto. Éste nos ha resultado sumamente útil cuando nos dábamos cuenta, después de diversas versiones, de que algun cambio realizado nos había llevado por un mal camino o nos había acumulado errores. El comando es el siguiente: 
+  
+<img width="1020" alt="image" src="https://user-images.githubusercontent.com/125259984/230987586-c2ef6ee1-e894-44f5-bb1f-8fd7cc61d27c.png">
+ 
+El `Head` nos indica el commit en el que trabajamos, y en caso de que queramos recuperar un commit previo, por ejemplo `Arreglado Judith` copiamos su ID, en este caso 5a76a3cc06a811bc5b48a29607d38f9cb4fb112d, y escribimos el siguiente comando:
 
+git reset --hard 5a76a3cc06a811bc5b48a29607d38f9cb4fb112d
+
+<img width="967" alt="image" src="https://user-images.githubusercontent.com/125259984/230987420-e3da4e37-514e-44ee-b6fd-57fad0b9f0bd.png">
+
+Como se puede ver, ahora el `Head` está en `Arreglado Judith`.
 
 ### Antes de entregar la práctica
 
