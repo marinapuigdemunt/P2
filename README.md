@@ -285,6 +285,7 @@ En la detección automática observamos que se prioriza mucho la voz, ya que la 
   el resumen).
 
 Utilizando el comando `scripts/run_vad.sh 1.08 10.37` obtenemos los siguientes resultados:
+
 ![image](https://user-images.githubusercontent.com/125259801/230866785-15952698-aed2-43f5-a29e-961827a5051c.png)
 
 ### Trabajos de ampliación
