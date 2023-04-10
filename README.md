@@ -330,7 +330,7 @@ Por último, nos gustaría destacar que hemos mostrado todos los resultados obte
  
 El **Head** nos indica el commit en el que trabajamos, y en caso de que queramos recuperar un commit previo, por ejemplo *Arreglado Judith* copiamos su ID, en este caso 5a76a3cc06a811bc5b48a29607d38f9cb4fb112d, y escribimos el siguiente comando:
 
-git reset --hard 5a76a3cc06a811bc5b48a29607d38f9cb4fb112d
+`git reset --hard 5a76a3cc06a811bc5b48a29607d38f9cb4fb112d`
 
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/125259984/230987420-e3da4e37-514e-44ee-b6fd-57fad0b9f0bd.png">
 
